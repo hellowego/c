@@ -38,6 +38,21 @@ void stackFree(Stack *obj)
 {
     free(obj->stk);
 }
+
+typedef struct
+{
+    Stack *inStack;
+    Stack *outStack;
+} MyQueue;
+
+MyQuene *myQueneCreate()
+{
+    MyQueue *ret = malloc(sizeof(MyQueue));
+    ret->inStack = stackCreate(100);
+    ret->outStack = stackCreate(100);
+    return ret;
+}
+
 int main()
 {
     printf("hello world");
