@@ -45,7 +45,7 @@ typedef struct
     Stack *outStack;
 } MyQueue;
 
-MyQuene *myQueneCreate()
+MyQueue *myQueueCreate()
 {
     MyQueue *ret = malloc(sizeof(MyQueue));
     ret->inStack = stackCreate(100);
@@ -53,8 +53,62 @@ MyQuene *myQueneCreate()
     return ret;
 }
 
+void in2out(MyQueue *obj)
+{
+    while (!stackEmpty(obj->inStack))
+    {
+        stackPush(obj->outStack, stackTop(obj->inStack));
+        stackPop(obj->inStack);
+    }
+}
+
+void myQueuePush(MyQueue *obj, int x)
+{
+    stackPush(obj->inStack, x);
+}
+
+int myQueuePop(MyQueue *obj)
+{
+    if (stackEmpty(obj->outStack))
+    {
+        in2out(obj);
+    }
+    int x = stackTop(obj->outStack);
+    stackPop(obj->outStack);
+    return x;
+}
+
+int myQueuePeek(MyQueue *obj)
+{
+    if (stackEmpty(obj->outStack))
+    {
+        in2out(obj);
+    }
+    return stackTop(obj->outStack);
+}
+
+bool myQueueEmpty(MyQueue *obj)
+{
+    return stackEmpty(obj->inStack) && stackEmpty(obj->outStack);
+}
+
+void myQueueFree(MyQueue *obj)
+{
+    stackFree(obj->inStack);
+    stackFree(obj->outStack);
+}
+
 int main()
 {
+    MyQueue *obj = myQueueCreate();
+    myQueuePush(obj, 1);
+    myQueuePush(obj, 2);
+    myQueuePush(obj, 3);
+    myQueuePush(obj, 4);
+    myQueuePush(obj, 5);
+    int v1 = myQueuePop(obj);
+    int v2 = myQueuePeek(obj);
+
     printf("hello world");
     return 0;
 }
