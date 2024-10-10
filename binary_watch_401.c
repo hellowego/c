@@ -13,7 +13,7 @@ char **readBinaryWatch(int turnedOn, int *returnSize)
         {
             if (__builtin_popcount(h) + __builtin_popcount(m) == turnedOn)
             {
-                char *tem = (char *)malloc(6 * sizeof(char *));
+                char *tem = (char *)malloc(6 * sizeof(char));
                 sprintf(tem, "%d:%02d", h, m);
                 ans[(*returnSize)++] = tem;
             }
