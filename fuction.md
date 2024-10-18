@@ -1,2 +1,3 @@
 strlen
 strcpy
+strndup
