@@ -5,3 +5,4 @@ leetcode c language
 strlen
 strcpy
 strndup
+qsort
