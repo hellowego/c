@@ -6,3 +6,4 @@ strlen
 strcpy
 strndup
 qsort
+isupper   <ctype.h>

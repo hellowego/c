@@ -2,6 +2,27 @@
 #include <stdlib.h>
 #include <string.h>
 
+char* reverseWords(char* s) {
+    int b=0;
+    int e=0;
+    int len=strlen(s);
+    for(int i=0; i<=len; i++ )
+    {
+        if(s(i)==' ' || i==len)
+        {
+            b=e;
+            e=i-1;
+            for(j=b;j<=(e-b)/2;j++)
+            {
+                char tmp = s[b];
+                s[b]=s[e];
+                s[e]=tmp;
+            }
+        }
+    }
+    return s;
+}
+
 char *str[] = {"Gold Medal", "Silver Medal", "Bronze Medal"};
 int cmp(const void *a, const void *b)
 {
@@ -12,7 +33,7 @@ int cmp(const void *a, const void *b)
 char **findRelativeRanks(int *score, int scoreSize, int *returnSize)
 {
     int arr[scoreSize][2];
-    *returnSize = 0;
+    *returnSize = scoreSize;
     for (int i = 0; i < scoreSize; i++)
     {
         arr[i][0] = -score[i];
@@ -22,28 +43,18 @@ char **findRelativeRanks(int *score, int scoreSize, int *returnSize)
     char **ans = (char **)malloc(scoreSize * sizeof(char *));
     for (int i = 0; i < scoreSize; i++)
     {
-        for (int j = 0; j < scoreSize; j++)
+        char *tmp = (char *)malloc(13 * sizeof(char));
+        sprintf(tmp,"%d",i+1);
+        if(i<3)
         {
-            if (score[i] == abs(arr[j][0]))
-            {
-                char *tmp = (char *)malloc(13 * sizeof(char));
-                if (j < 3)
-                {
-                    // char *tmp1 = strndup(str[j], 12);
-                    sprintf(tmp, "%s", str[j]);
-                    // printf("%s\n", tmp);
-                    ans[(*returnSize)++] = tmp;
-                    break;
-                }
-                else
-                {
-                    sprintf(tmp, "%d", j + 1);
-                    // printf("%s\n", tmp);
-                    ans[(*returnSize)++] = tmp;
-                    break;
-                }
-            }
+            sprintf(tmp,"%s",str[i]);
+        }else{
+            sprintf(tmp,"%d",i+1);
         }
+        printf("len: %d\n",strlen(tmp));
+        ans[arr[i][1]]=tmp;
+
+       
     }
     return ans;
 }
