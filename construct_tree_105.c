@@ -33,12 +33,12 @@ struct TreeNode *dfs(int *preorder, int *inorder, int treeSize, int preleft, int
     int leftSize = inorder_root - inLeft;
     rootNode->val = preorder[preleft];
     rootNode->left = dfs(preorder, inorder, treeSize, preleft + 1, preleft + leftSize, inLeft, inorder_root - 1);
-    rootNode->right = dfs(preorder, inorder, treeSize, preleft + leftSize + 1, inorder_root, +1, inRight);
+    rootNode->right = dfs(preorder, inorder, treeSize, preleft + leftSize + 1, preRight, inorder_root + 1, inRight);
 
     return rootNode;
 }
 
 struct TreeNode *buildTree(int *preorder, int preorderSize, int *inorder, int inorderSize)
 {
-    return dfs(preorder, inorder, preorderSize, inorderSize, 0, preorderSize - 1, 0, inorderSize - 1);
+    return dfs(preorder, inorder, preorderSize, 0, preorderSize - 1, 0, inorderSize - 1);
 }
