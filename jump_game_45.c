@@ -18,9 +18,25 @@ bool canJump(int *nums, int numsSize)
 
 int jump(int *nums, int numsSize)
 {
-    int min = 0;
-
-    return 0;
+    int index = numsSize;
+    int cnt = 0;
+    if (numsSize == 1)
+    {
+        return 0;
+    }
+    while (index > 0)
+    {
+        for (int i = 0; i < index; i++)
+        {
+            if (nums[i] + i >= index)
+            {
+                index = i;
+                cnt++;
+                break;
+            }
+        }
+    }
+    return cnt;
 }
 
 int main()
