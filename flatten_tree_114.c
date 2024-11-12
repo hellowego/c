@@ -35,9 +35,9 @@ void flatten(struct TreeNode *root)
 
 int main()
 {
-    struct TreeNode *root = createTreeNode(0);
-    // root->right->left = createTreeNode(2);
-    int *returnsize = (int *)malloc(sizeof(int));
+    struct TreeNode *root = createTreeNode(1);
+    root->left = createTreeNode(2);
+    root->right = createTreeNode(3);
 
     flatten(root);
     return 0;
